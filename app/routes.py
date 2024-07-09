@@ -1,25 +1,35 @@
-from flask import render_template, jsonify
+from flask import render_template, jsonify, request
 from app import app
+import numpy as np
+
+# Cargar el modelo ONNX
+import onnxruntime as rt
+
+# Cargar el modelo ONNX
+#sessRF = rt.InferenceSession("data/random_forest_model.onnx")
+#sessDT = rt.InferenceSession("data/decision_tree_model.onnx")
 
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
 
-@app.errorhandler(404)
-def not_found_error(error):
-    code_error = {
-        'number': 404,
-        'message': 'Not found',
-        'description': 'La página que buscas no pudo ser encontrada.'
-    }
-    return render_template('error.html', error=code_error)
+@app.route('/randomForest')
+def randomForest():
+    return render_template('randomForest.html')
 
-@app.errorhandler(500)
-def internal_error(error):
-    code_error = {
-        'number': 500,
-        'message': 'Internal Server Error',
-        'description': 'Ocurrió un error interno en el servidor.'
-    }
-    return render_template('error.html', error=code_error)
+@app.route('/decisionTree')
+def decisionTree():
+    return render_template('decisionTree.html')
+
+@app.route('/predictRF', methods=['POST'])
+def predictRF():
+    data = request.get_json(force=True)
+    features = np.array(data['features'], dtype=np.float32).reshape(1, -1)
+    input_name = sessRF.get_inputs()[0].name
+    prediction = sessRF.run(None, {input_name: features})[0]
+    return jsonify({'prediction': prediction.tolist()})
+
+@app.route('/predictDT', methods=['POST'])
+def predictDT():
+    return "Not implemented yet."
