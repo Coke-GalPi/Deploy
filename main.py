@@ -1,13 +1,12 @@
-from flask import render_template, jsonify, request
-from app import app
+from flask import Flask, request, jsonify, render_template
+import onnxruntime as rt
 import numpy as np
 
-# Cargar el modelo ONNX
-import onnxruntime as rt
+app = Flask(__name__)
 
-# Cargar el modelo ONNX
-#sessRF = rt.InferenceSession("data/random_forest_model.onnx")
-#sessDT = rt.InferenceSession("data/decision_tree_model.onnx")
+# Cargar los modelos ONNX
+sessRF = rt.InferenceSession("data/random_forest_model.onnx")
+sessDT = rt.InferenceSession("data/decision_tree_model.onnx")
 
 @app.route('/')
 @app.route('/index')
@@ -28,8 +27,12 @@ def predictRF():
     features = np.array(data['features'], dtype=np.float32).reshape(1, -1)
     input_name = sessRF.get_inputs()[0].name
     prediction = sessRF.run(None, {input_name: features})[0]
+    print(f'prediction: {prediction}')
     return jsonify({'prediction': prediction.tolist()})
 
 @app.route('/predictDT', methods=['POST'])
 def predictDT():
-    return "Not implemented yet."
+    pass
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Random Forest Predictor
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card text-center mt-3">
+                        <div class="card-header">
+                            <h2>Random Forest Predictor</h2>
+                        </div>
+                        <div class="card-body">
+                            <form onsubmit="event.preventDefault(); predict();">
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label for="feature1" class="form-label">PRCP</label>
+                                        <input class="form-control" type="text" id="feature1" name="feature1">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="feature2" class="form-label">PLANE_AGE</label>
+                                        <input class="form-control" type="text" id="feature2" name="feature2">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feature3" class="form-label">SNOW</label>
+                                    <input class="form-control" type="text" id="feature3" name="feature3">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feature4" class="form-label">SNWD</label>
+                                    <input class="form-control" type="text" id="feature4" name="feature4">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feature5" class="form-label">TMAX</label>
+                                    <input class="form-control" type="text" id="feature5" name="feature5">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feature6" class="form-label">AWND</label>
+                                    <input class="form-control" type="text" id="feature6" name="feature6">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feature7" class="form-label">SEASON</label>
+                                    <input class="form-control" type="text" id="feature7" name="feature7">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="submit" value="Predict" class="btn btn-outline-secondary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="card text center mt-5">
+                        <div class="card-header">
+                            <h2>Prediction</h2>
+                        </div>
+                        <div class="card-body">
+                            <h4 id="result"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function predict() {
+            const features = [
+                parseFloat(document.getElementById('feature1').value),
+                parseFloat(document.getElementById('feature2').value),
+                parseFloat(document.getElementById('feature3').value),
+                parseFloat(document.getElementById('feature4').value),
+                parseFloat(document.getElementById('feature5').value),
+                parseFloat(document.getElementById('feature6').value),
+                parseFloat(document.getElementById('feature7').value)
+            ];
+        
+            const response = await fetch('http://localhost:5000/predictRF', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ features }),
+            });
+        
+            const result = await response.json();
+            document.getElementById('result').textContent = 'Prediction: ' + result.prediction;
+        }
+    </script>
+
+{% endblock %}
