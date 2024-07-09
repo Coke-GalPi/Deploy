@@ -5,5 +5,333 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Decision Tree Predictor</h1>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card text-center mt-3">
+                        <div class="card-header">
+                            <h2>Decision Tree Predict</h2>
+                        </div>
+                        <div class="card-body">
+                            <form onsubmit="event.preventDefault(); predict();">
+                                <div class="row mt-3">
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="MONTH" aria-label="Default select example">
+                                            <option selected>MONTH</option>
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="DEP_TIME_BLK" aria-label="Default select example">
+                                            <option selected>DEP_TIME_BLK</option>
+                                            <option value="1">0001-0559</option>
+                                            <option value="2">0600-0659</option>
+                                            <option value="3">0700-0759</option>
+                                            <option value="4">0800-0859</option>
+                                            <option value="5">0900-0959</option>
+                                            <option value="6">1000-1059</option>
+                                            <option value="7">1100-1159</option>
+                                            <option value="8">1200-1259</option>
+                                            <option value="9">1300-1359</option>
+                                            <option value="10">1400-1459</option>
+                                            <option value="11">1500-1559</option>
+                                            <option value="12">1600-1659</option>
+                                            <option value="13">1700-1759</option>
+                                            <option value="14">1800-1859</option>
+                                            <option value="15">1900-1959</option>
+                                            <option value="16">2000-2059</option>
+                                            <option value="17">2100-2159</option>
+                                            <option value="18">2200-2259</option>
+                                            <option value="19">2300-2359</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="CARRIER_NAME" aria-label="Default select example">
+                                            <option selected>CARRIER_NAME</option>
+                                            <option value="1">Alaska Airlines Inc.</option>
+                                            <option value="2">Allegiant Air</option>
+                                            <option value="3">American Airlines Inc.</option>
+                                            <option value="4">American Eagle Airlines Inc.</option>
+                                            <option value="5">Atlantic Southeast Airlines</option>
+                                            <option value="6">Comair Inc.</option>
+                                            <option value="7">Delta Air Lines Inc.</option>
+                                            <option value="8">Endeavor Air Inc.</option>
+                                            <option value="9">Frontier Airlines Inc.</option>
+                                            <option value="10">Hawaiian Airlines Inc.</option>
+                                            <option value="11">JetBlue Airways</option>
+                                            <option value="12">Mesa Airlines Inc.</option>
+                                            <option value="13">Midwest Airline, Inc.</option>
+                                            <option value="14">SkyWest Airlines Inc.</option>
+                                            <option value="15">Southwest Airlines Co.</option>
+                                            <option value="16">Spirit Air Lines</option>
+                                            <option value="17">United Air Lines Inc.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="CITY_AIRPORT" aria-label="Default select example">
+                                            <option selected>CITY_AIRPORT</option>
+                                            <option value="1">Albany</option>
+                                            <option value="2">Albuquerque</option>
+                                            <option value="3">Anchorage</option>
+                                            <option value="4">Atlanta</option>
+                                            <option value="5">Austin</option>
+                                            <option value="6">Baltimore</option>
+                                            <option value="7">Birmingham</option>
+                                            <option value="8">Boise</option>
+                                            <option value="9">Boston</option>
+                                            <option value="10">Buffalo</option>
+                                            <option value="11">Burbank</option>
+                                            <option value="12">Burlington</option>
+                                            <option value="13">Charleston</option>
+                                            <option value="14">Charlotte</option>
+                                            <option value="15">Chicago</option>
+                                            <option value="16">Cincinnati</option>
+                                            <option value="17">Cleveland</option>
+                                            <option value="18">Columbus</option>
+                                            <option value="19">Dallas</option>
+                                            <option value="20">Dallas/Fort Worth</option>
+                                            <option value="21">Dayton</option>
+                                            <option value="22">Denver</option>
+                                            <option value="23">Des Moines</option>
+                                            <option value="24">Detroit</option>
+                                            <option value="25">El Paso</option>
+                                            <option value="26">Fayetteville</option>
+                                            <option value="27">Fort Lauderdale</option>
+                                            <option value="28">Fort Myers</option>
+                                            <option value="29">Grand Rapids</option>
+                                            <option value="30">Greensboro/High Point</option>
+                                            <option value="31">Greer</option>
+                                            <option value="32">Hartford</option>
+                                            <option value="33">Honolulu</option>
+                                            <option value="34">Houston</option>
+                                            <option value="35">Imperial/El Centro</option>
+                                            <option value="36">Indianapolis</option>
+                                            <option value="37">Jacksonville</option>
+                                            <option value="38">Kahului</option>
+                                            <option value="39">Kansas City</option>
+                                            <option value="40">Knoxville</option>
+                                            <option value="41">Kona</option>
+                                            <option value="42">Las Vegas</option>
+                                            <option value="43">Long Beach</option>
+                                            <option value="44">Los Angeles</option>
+                                            <option value="45">Louisville</option>
+                                            <option value="46">Madison</option>
+                                            <option value="47">Memphis</option>
+                                            <option value="48">Miami</option>
+                                            <option value="49">Milwaukee</option>
+                                            <option value="50">Minneapolis</option>
+                                            <option value="51">Myrtle Beach</option>
+                                            <option value="52">Nashville</option>
+                                            <option value="53">New Orleans</option>
+                                            <option value="54">New York</option>
+                                            <option value="55">Newark</option>
+                                            <option value="56">Norfolk</option>
+                                            <option value="57">Oakland</option>
+                                            <option value="58">Oklahoma City</option>
+                                            <option value="59">Ontario</option>
+                                            <option value="60">Orlando</option>
+                                            <option value="61">Palm Springs</option>
+                                            <option value="62">Pensacola</option>
+                                            <option value="63">Philadelphia</option>
+                                            <option value="64">Phoenix</option>
+                                            <option value="65">Pittsburgh</option>
+                                            <option value="66">Portland</option>
+                                            <option value="67">Providence</option>
+                                            <option value="68">Raleigh/Durham</option>
+                                            <option value="69">Reno</option>
+                                            <option value="70">Richmond</option>
+                                            <option value="71">Rochester</option>
+                                            <option value="72">Sacramento</option>
+                                            <option value="73">Salt Lake City</option>
+                                            <option value="74">San Antonio</option>
+                                            <option value="75">San Diego</option>
+                                            <option value="76">San Francisco</option>
+                                            <option value="77">San Jose</option>
+                                            <option value="78">San Juan</option>
+                                            <option value="79">Sanford</option>
+                                            <option value="80">Santa Ana</option>
+                                            <option value="81">Savannah</option>
+                                            <option value="82">Seattle</option>
+                                            <option value="83">Spokane</option>
+                                            <option value="84">St. Louis</option>
+                                            <option value="85">Syracuse</option>
+                                            <option value="86">Tampa</option>
+                                            <option value="87">Tucson</option>
+                                            <option value="88">Tulsa</option>
+                                            <option value="89">Washington</option>
+                                            <option value="90">West Palm Beach/Palm Beach</option>                                            
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="STATE_AIRPORT" aria-label="Default select example">
+                                            <option selected>STATE_AIRPORT</option>
+                                            <option value="1">Alabama</option>
+                                            <option value="2">Alaska</option>
+                                            <option value="3">Arizona</option>
+                                            <option value="4">Arkansas</option>
+                                            <option value="5">California</option>
+                                            <option value="6">Colorado</option>
+                                            <option value="7">Connecticut</option>
+                                            <option value="8">Distrito de Columbia</option>
+                                            <option value="9">Florida</option>
+                                            <option value="10">Georgia</option>
+                                            <option value="11">Hawaii</option>
+                                            <option value="12">Idaho</option>
+                                            <option value="13">Illinois</option>
+                                            <option value="14">Indiana</option>
+                                            <option value="15">Iowa</option>
+                                            <option value="16">Kentucky</option>
+                                            <option value="17">Louisiana</option>
+                                            <option value="18">Maine</option>
+                                            <option value="19">Maryland</option>
+                                            <option value="20">Massachusetts</option>
+                                            <option value="21">Michigan</option>
+                                            <option value="22">Minnesota</option>
+                                            <option value="23">Missouri</option>
+                                            <option value="24">Nebraska</option>
+                                            <option value="25">Nevada</option>
+                                            <option value="26">New Jersey</option>
+                                            <option value="27">New Mexico</option>
+                                            <option value="28">New York</option>
+                                            <option value="29">North Carolina</option>
+                                            <option value="30">Ohio</option>
+                                            <option value="31">Oklahoma</option>
+                                            <option value="32">Oregon</option>
+                                            <option value="33">Pensilvania</option>
+                                            <option value="34">Puerto Rico</option>
+                                            <option value="35">Rhode Island</option>
+                                            <option value="36">South Carolina</option>
+                                            <option value="37">Tennessee</option>
+                                            <option value="38">Texas</option>
+                                            <option value="39">Utah</option>
+                                            <option value="40">Virginia</option>
+                                            <option value="41">Washington</option>
+                                            <option value="42">Wisconsin</option>                                            
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="SEASON" aria-label="Default select example">
+                                            <option selected>SEASON</option>
+                                            <option value="2">Winter</option>
+                                            <option value="4">Spring</option>
+                                            <option value="1">Summer</option>
+                                            <option value="3">Autumn</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="PRCP_CAT" aria-label="Default select example">
+                                            <option selected>PRCP_CAT</option>
+                                            <option value="0">NO</option>
+                                            <option value="1">YES</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="SNOW_CAT" aria-label="Default select example">
+                                            <option selected>SNOW_CAT</option>
+                                            <option value="0">NO</option>
+                                            <option value="1">YES</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="SNWD_CAT" aria-label="Default select example">
+                                            <option selected>SNWD_CAT</option>
+                                            <option value="0">NO</option>
+                                            <option value="1">YES</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="TMAX_CAT" aria-label="Default select example">
+                                            <option selected>TMAX_CAT</option>
+                                            <option value="1">VERY COLD</option>
+                                            <option value="2">COLD</option>
+                                            <option value="3">TEMPERED</option>
+                                            <option value="4">HOT</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="AWND_CAT" aria-label="Default select example">
+                                            <option selected>AWND_CAT</option>
+                                            <option value="0">NO</option>
+                                            <option value="1">YES</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-select" id="PLANE_AGE_CAT" aria-label="Default select example">
+                                            <option selected>PLANE_AGE_CAT</option>
+                                            <option value="1">NEW</option>
+                                            <option value="2">RELATIVELY NEW</option>
+                                            <option value="3">MODERATE</option>
+                                            <option value="4">USED</option>
+                                            <option value="5">OLD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-5">
+                                    <input type="submit" value="Predict" class="btn btn-outline-secondary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text center mt-5">
+                        <div class="card-header">
+                            <h2>Prediction</h2>
+                        </div>
+                        <div class="card-body">
+                            <h4 id="result"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function predict() {
+            const features = [
+                document.getElementById('MONTH').value,
+                document.getElementById('DEP_TIME_BLK').value,
+                document.getElementById('CARRIER_NAME').value,
+                document.getElementById('CITY_AIRPORT').value,
+                document.getElementById('STATE_AIRPORT').value,
+                document.getElementById('SEASON').value,
+                document.getElementById('PRCP_CAT').value,
+                document.getElementById('SNOW_CAT').value,
+                document.getElementById('SNWD_CAT').value,
+                document.getElementById('TMAX_CAT').value,
+                document.getElementById('AWND_CAT').value,
+                document.getElementById('PLANE_AGE_CAT').value,
+            ];
+            console.log('features '+features);
+            const response = await fetch('http://localhost:5000/predictDT', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ features }),
+            });
+        
+            const result = await response.json();
+            document.getElementById('result').textContent = 'Prediction: ' + result.prediction;
+        }
+    </script>
 {% endblock %}
