@@ -17,30 +17,53 @@
                             <form onsubmit="event.preventDefault(); predict();">
                                 <div class="row mt-3">
                                     <div class="col-md-4">
-                                        <label for="feature1" class="form-label">PRCP</label>
-                                        <input class="form-control" type="text" id="feature1" name="feature1">
+                                        <select class="form-select" id="feature1" aria-label="Default select example">
+                                            <option selected>PRCP</option>
+                                            <option value="0">NO</option>
+                                            <option value="1">YES</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="feature2" class="form-label">PLANE_AGE</label>
-                                        <input class="form-control" type="text" id="feature2" name="feature2">
+                                        <select class="form-select" id="feature2" aria-label="Default select example">
+                                            <option selected>PLANE_AGE</option>
+                                            <option value="1">NEW</option>
+                                            <option value="2">RELATIVELY NEW</option>
+                                            <option value="3">MODERATE</option>
+                                            <option value="4">USED</option>
+                                            <option value="5">OLD</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="feature3" class="form-label">SNOW</label>
-                                        <input class="form-control" type="text" id="feature3" name="feature3">
+                                        <select class="form-select" id="feature3" aria-label="Default select example">
+                                            <option selected>SNOW</option>
+                                            <option value="0">NO</option>
+                                            <option value="1">YES</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-4">
-                                        <label for="feature4" class="form-label">SNWD</label>
-                                        <input class="form-control" type="text" id="feature4" name="feature4">
+                                        <select class="form-select" id="feature4" aria-label="Default select example">
+                                            <option selected>SNWD</option>
+                                            <option value="0">NO</option>
+                                            <option value="1">YES</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="feature5" class="form-label">TMAX</label>
-                                        <input class="form-control" type="text" id="feature5" name="feature5">
+                                        <select class="form-select" id="feature5" aria-label="Default select example">
+                                            <option selected>TMAX</option>
+                                            <option value="1">VERY COLD</option>
+                                            <option value="2">COLD</option>
+                                            <option value="3">TEMPERED</option>
+                                            <option value="4">HOT</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="feature6" class="form-label">AWND</label>
-                                        <input class="form-control" type="text" id="feature6" name="feature6">
+                                        <select class="form-select" id="feature6" aria-label="Default select example">
+                                            <option selected>AWND</option>
+                                            <option value="0">NO</option>
+                                            <option value="1">YES</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
@@ -48,8 +71,13 @@
                                         <input class="form-control" type="hidden">
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="feature7" class="form-label">SEASON</label>
-                                        <input class="form-control" type="text" id="feature7" name="feature7">
+                                        <select class="form-select" id="feature7" aria-label="Default select example">
+                                            <option selected>SEASON</option>
+                                            <option value="1">Summer</option>
+                                            <option value="2">Winter</option>
+                                            <option value="3">Autumn</option>
+                                            <option value="4">Spring</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
                                         <input class="form-control" type="hidden">
@@ -63,12 +91,13 @@
                     </div>
                 </div>
                 <div class="col-md-4 ">
-                    <div class="card text center mt-5">
+                    <div class="card text-center mt-5">
                         <div class="card-header">
                             <h2>Prediction</h2>
                         </div>
                         <div class="card-body">
-                            <h4 id="result"></h4>
+                            <h4>Can the flight be delayed?</h4>
+                            <h5 id="result"></h5>
                         </div>
                     </div>
                 </div>

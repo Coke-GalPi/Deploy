@@ -32,7 +32,6 @@ def predictRF():
 @app.route('/predictDT', methods=['POST'])
 def predictDT():
     data = request.get_json(force=True)
-    print(f'data: {data}')
     features = np.array(data['features'], dtype=np.float32).reshape(1, -1)
     input_name = sessDT.get_inputs()[0].name
     prediction = sessDT.run(None, {input_name: features})[0]
