@@ -35,7 +35,6 @@ def predictDT():
     features = np.array(data['features'], dtype=np.float32).reshape(1, -1)
     input_name = sessDT.get_inputs()[0].name
     prediction = sessDT.run(None, {input_name: features})[0]
-    print(f'prediction: {prediction}')
     return jsonify({'prediction': prediction.tolist()})
 
 if __name__ == '__main__':

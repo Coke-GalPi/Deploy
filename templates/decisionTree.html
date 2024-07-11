@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card text center mt-5">
+                    <div class="card text-center mt-5">
                         <div class="card-header">
                             <h2>Prediction</h2>
                         </div>
@@ -176,12 +176,7 @@
             });
         
             const result = await response.json();
-            if (result.prediction === 1){
-                document.getElementById('result').textContent = 'Prediction: YES';
-            } else if (result.prediction === 0){
-                document.getElementById('result').textContent = 'Prediction: NO';
-            }
-            //document.getElementById('result').textContent = 'Prediction: ' + result.prediction;
+            document.getElementById('result').textContent = 'Prediction: ' + result.prediction;
         }
     </script>
 {% endblock %}
