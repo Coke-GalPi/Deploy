@@ -36,8 +36,10 @@ Este proyecto implementa una aplicación web utilizando Flask para predecir resu
 - `/` o `/index`: Página principal.
 - `/randomForest`: Página para predicciones usando el modelo de Bosque Aleatorio.
 - `/decisionTree`: Página para predicciones usando el modelo de Árbol de Decisión.
+- `/feedforwardNN`: Página para predicciones usando el modelo de Feedforward Neural Network.
 - `/predictRF`: Endpoint para realizar predicciones con el modelo de Bosque Aleatorio (método POST).
 - `/predictDT`: Endpoint para realizar predicciones con el modelo de Árbol de Decisión (método POST).
+- `/predictFNN`: Endpoint para realizar predicciones con el modelo de Feedforward Neural Network (método POST).
 
 ## Estructura de los Archivos
 
