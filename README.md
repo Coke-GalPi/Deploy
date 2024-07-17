@@ -41,7 +41,6 @@ Este proyecto implementa una aplicación web utilizando Flask para predecir resu
 
 ## Estructura de los Archivos
 
-- `app.py`: Archivo principal de la aplicación Flask.
 - `main.py`: Archivo que carga los modelos y define las rutas.
 - `data/`: Carpeta que contiene los modelos ONNX.
 - `templates/`: Carpeta que contiene las plantillas HTML.
