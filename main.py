@@ -1,14 +1,14 @@
 from flask import Flask, request, jsonify, render_template
 import onnxruntime as rt
 import numpy as np
+import os
 
+# Crear la aplicacion Flask
 app = Flask(__name__)
 
 # Cargar los modelos ONNX
 sessRF = rt.InferenceSession("data/random_forest_model.onnx")
 sessDT = rt.InferenceSession("data/decision_tree_model.onnx")
-sessFNN = rt.InferenceSession("data/feedforward_nn_model.onnx")
-sessFNN2 = rt.InferenceSession("data/FNNwoutES.onnx")
 
 @app.route('/')
 @app.route('/index')
@@ -47,31 +47,5 @@ def predictDT():
         prediction = 'Delayed'
     return jsonify({'prediction': prediction})
 
-# Pagina de Feedforward Neural Network 1
-@app.route('/feedforwardNN')
-def feedforwardNN():
-    return render_template('feedforwardNN.html')
-@app.route('/predictFNN', methods=['POST'])
-def predictFNN():
-    data = request.get_json(force=True)
-    features = np.array(data['features'], dtype=np.float32).reshape(1, -1)
-    input_name = sessFNN.get_inputs()[0].name
-    prediction = sessFNN.run(None, {input_name: features})[0]
-    prediction = int(prediction.item())
-    return jsonify({'prediction': prediction})
-
-# Pagina de Feedforward Neural Network 2
-@app.route('/feedforwardNeuralN')
-def feedforwardNeuralN():
-    return render_template('feedforwardNeuralN.html')
-@app.route('/predictFNN_2', methods=['POST'])
-def predictFNN_2():
-    data = request.get_json(force=True)
-    features = np.array(data['features'], dtype=np.float32).reshape(1, -1)
-    input_name = sessFNN2.get_inputs()[0].name
-    prediction = sessFNN2.run(None, {input_name: features})[0]
-    prediction = int(prediction.item())
-    return jsonify({'prediction': prediction})
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
