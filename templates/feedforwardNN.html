@@ -68,7 +68,7 @@
                 parseFloat(document.getElementById('feature1').value)
             ];
 
-            const response = await fetch('http://localhost:5000/predictFNN', {
+            const response = await fetch('/predictFNN', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

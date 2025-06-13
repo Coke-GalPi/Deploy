@@ -199,7 +199,7 @@
                 parseFloat(document.getElementById('PLANE_AGE_CAT').value),
             ];
             console.log('features '+features);
-            const response = await fetch('http://localhost:5000/predictDT', {
+            const response = await fetch('/predictDT', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

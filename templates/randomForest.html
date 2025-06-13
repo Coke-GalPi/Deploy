@@ -149,7 +149,7 @@
                 parseFloat(document.getElementById('feature7').value)
             ];
         
-            const response = await fetch('http://localhost:5000/predictRF', {
+            const response = await fetch('/predictRF', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
